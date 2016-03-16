@@ -106,10 +106,10 @@ class RevisionOverviewController extends ControllerBase {
       $date = $this->dateFormatter->format($revision->getRevisionCreationTime(), 'short');
       $link = $revision->toLink($date, 'revision');
 
-      $username = [
+      $username = \Drupal::service('renderer')->render([
         '#theme' => 'username',
         '#account' => $revision->getRevisionUser(),
-      ];
+      ]);
     }
     else {
       $link = $revision->toLink($revision->label(), 'revision');
